@@ -1,11 +1,12 @@
 import { Avatar, Button, Stack, TextField, Typography } from '@mui/material';
 import useUser from 'hooks/useUser';
 import React, { FormEvent, useState } from 'react';
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import useLoadingIndicator from 'hooks/with_provider/useLoadingIndicator';
 import Http from 'utils/http';
 import useNotification from 'hooks/with_provider/useNotification';
 import Router from 'next/router';
+import LandingComponent from 'components/LandingComponent';
 
 export default function SignIn() {
     const [password, setPassword] = useState("");
@@ -42,11 +43,5 @@ export default function SignIn() {
             </form>
         </Stack>
     );
-    if (error?.code === 401) return (
-        <Button onClick={() => signIn("google")}>
-            Sign in with google
-        </Button>
-    );
-
-    return <></>;
+    if (error?.code === 401) return <LandingComponent />;
 }

@@ -6,6 +6,15 @@ import { NotificationProvider } from 'hooks/with_provider/useNotification';
 import { AlertDialogProvider } from 'hooks/with_provider/useAlertDialog';
 import { ConfirmDialogProvider } from 'hooks/with_provider/useConfirmDialog';
 import { SessionProvider } from 'next-auth/react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#129e10"
+    }
+  }
+});
 
 interface AppPropsWithSession extends AppProps {
   pageProps: { session: any; };
@@ -13,19 +22,21 @@ interface AppPropsWithSession extends AppProps {
 
 function MyApp({ Component, pageProps }: AppPropsWithSession) {
   return (
-    <SessionProvider session={pageProps.session}>
-      <UserContextProvider>
-        <LoadingIndicatorProvider>
-          <NotificationProvider>
-            <AlertDialogProvider>
-              <ConfirmDialogProvider>
-                <Component {...pageProps} />
-              </ConfirmDialogProvider>
-            </AlertDialogProvider>
-          </NotificationProvider>
-        </LoadingIndicatorProvider>
-      </UserContextProvider>
-    </SessionProvider>
+    <ThemeProvider theme={theme}>
+      <SessionProvider session={pageProps.session}>
+        <UserContextProvider>
+          <LoadingIndicatorProvider>
+            <NotificationProvider>
+              <AlertDialogProvider>
+                <ConfirmDialogProvider>
+                  <Component {...pageProps} />
+                </ConfirmDialogProvider>
+              </AlertDialogProvider>
+            </NotificationProvider>
+          </LoadingIndicatorProvider>
+        </UserContextProvider>
+      </SessionProvider>
+    </ThemeProvider>
   );
 }
 
