@@ -8,7 +8,7 @@ import normalize, { RequestError } from "utils/response_normalize";
 async function handler(req: NextApiRequest, token: JWT) {
     if (req.method !== "POST") throw new RequestError(405, "Method not allowed");
 
-    const { password } = req.body;
+    const { birthDate, yearLevel, gender } = req.body;
 
     const db = await connectToDatabase();
     if (!db) {
@@ -21,7 +21,9 @@ async function handler(req: NextApiRequest, token: JWT) {
         email: token.email,
         name: token.name,
         picture: token.picture,
-        password: bcrypt.hashSync(password, 10)
+        birthDate,
+        yearLevel,
+        gender
     });
 
     await user.save();

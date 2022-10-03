@@ -1,6 +1,5 @@
 import { Stack, Typography, Avatar, TextField, Button, Container, SelectChangeEvent, FormControl, InputLabel, MenuItem, Select, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import dayjs, { Dayjs } from 'dayjs';
-import useUser from "hooks/useUser";
 import useLoadingIndicator from "hooks/with_provider/useLoadingIndicator";
 import useNotification from "hooks/with_provider/useNotification";
 import { useSession } from "next-auth/react";
@@ -13,7 +12,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 export default function CreateAccount() {
-    const { error } = useUser({ whenFoundRedirectTo: "/" });
     const { data: session } = useSession();
     const loadingIndicator = useLoadingIndicator();
     const notify = useNotification();
@@ -25,7 +23,12 @@ export default function CreateAccount() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(e);
+        loadingIndicator.show();
+        await Http.post("/api/user/sign-in", { birthDate, yearLevel, gender }, {
+            onFail: errorMessage => notify(errorMessage, "error"),
+            onSuccess: () => Router.push('/')
+        });
+        loadingIndicator.hide();
     };
 
     return <>

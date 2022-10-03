@@ -12,7 +12,7 @@ const userSchema = new Schema({
     },
     picture: {
         type: String,
-        required: [true, "Image is required"],
+        required: [true, "Picture is required"],
     },
     gender: {
         type: String,
@@ -26,12 +26,10 @@ const userSchema = new Schema({
     },
     height: {
         type: Number,
-        required: [true, "Height is required"],
         min: [0, "Height cannot be zero"],
     },
     weight: {
         type: Number,
-        required: [true, "Weight is required"],
         min: [0, "Weight cannot be zero"],
     },
     birthDate: {
