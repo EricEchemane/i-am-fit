@@ -1,3 +1,4 @@
+import LoadingSkeleton from 'components/shared/LoadingSkeleton';
 import useUser from 'hooks/useUser';
 import React from 'react';
 
@@ -6,8 +7,7 @@ export default function HomePage() {
     whenNotFoundRedirectTo: '/sign-in'
   });
 
-  if (error) return <div>An Error occured in the request</div>;
-  if (!user) return <div>Loading...</div>;
+  if (error || !user) return <LoadingSkeleton />;
 
   return (
     <div>
