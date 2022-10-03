@@ -72,9 +72,7 @@ export default function HomePage() {
           startIcon={<SportsHandballOutlinedIcon />}>
           Exercises
         </NavButton>
-
         <div style={{ flex: 1 }}></div>
-
         <NavButton
           onClick={signOut}
           startIcon={<LogoutOutlinedIcon />}>
