@@ -14,6 +14,10 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Image is required"],
     },
+    gender: {
+        type: String,
+        required: [true, "Gender is required"],
+    },
     yearLevel: {
         type: Number,
         required: [true, "Year level is required"],
