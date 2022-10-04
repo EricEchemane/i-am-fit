@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, IconButton, Paper, Stack, Typography, useMediaQuery } from '@mui/material';
 import LoadingSkeleton from 'components/shared/LoadingSkeleton';
 import useUser from 'hooks/useUser';
 import Head from 'next/head';
@@ -16,8 +16,33 @@ export default function HomePage() {
   const { error, user } = useUser({
     whenNotFoundRedirectTo: '/sign-in'
   });
+  const is800Width = useMediaQuery('(max-width:800px)');
   const [currentTab, setCurrentTab] = useState(0);
-  const changeTab = (n: number) => () => setCurrentTab(n);
+  const [sideBarVisible, setSideBarVisible] = useState(is800Width);
+  const changeTab = (n: number) => () => {
+    setCurrentTab(n);
+    closeSideBar();
+  };
+
+  const openSideBar = () => {
+    const sidebar = document.getElementById('side-bar');
+    if (sidebar) {
+      sidebar.style.translate = "0 0";
+      setSideBarVisible(true);
+    }
+  };
+  const closeSideBar = () => {
+    const sidebar = document.getElementById('side-bar');
+    if (sidebar) {
+      sidebar.style.translate = "-100% 0";
+      setSideBarVisible(false);
+    }
+  };
+
+  const toggleSideBarVisibility = () => {
+    if (!is800Width) return;
+    sideBarVisible ? closeSideBar() : openSideBar();
+  };
 
   if (error || !user) return <LoadingSkeleton />;
 
@@ -27,7 +52,6 @@ export default function HomePage() {
     </Head>
     <div id="dashboard">
       <Stack id="side-bar">
-
         <Stack
           p={3} mb={2}
           spacing={1}
@@ -81,6 +105,28 @@ export default function HomePage() {
       </Stack>
 
       <Stack id="main-content">
+
+        <Stack id="top-nav-bar">
+          <Stack>
+            <Typography
+              fontWeight="bold">
+              {user.name}
+            </Typography>
+            <Typography
+              variant="caption">
+              {user.email}
+            </Typography>
+          </Stack>
+          <IconButton
+            onClick={toggleSideBarVisibility}
+            aria-label="menu"
+            size="large">
+            <Avatar
+              className='avatar'
+              alt={user.name || ""}
+              src={user.picture || ""} />
+          </IconButton>
+        </Stack>
 
         <Box hidden={currentTab !== 0}>
           home
