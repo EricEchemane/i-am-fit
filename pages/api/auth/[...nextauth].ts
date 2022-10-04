@@ -9,12 +9,8 @@ export default NextAuth({
         }),
     ],
     // 1 day session
-    // session: {
-    //     maxAge: 1000 * 60 * 60 * 24,
-    // },
-    // 5 minute session
     session: {
-        maxAge: 60 * 5,
+        maxAge: 60 * 60 * 24,
     },
     callbacks: {
         session({ session, token, user }) {
