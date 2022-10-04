@@ -21,7 +21,7 @@ export default function HomePage() {
   const [sideBarVisible, setSideBarVisible] = useState(isSmallDevice);
   const changeTab = (n: number) => () => {
     setCurrentTab(n);
-    if (isSmallDevice) return; closeSideBar();
+    if (isSmallDevice) closeSideBar();
   };
 
   const openSideBar = () => {
