@@ -3,14 +3,15 @@ import LoadingSkeleton from 'components/shared/LoadingSkeleton';
 import useUser from 'hooks/useUser';
 import Head from 'next/head';
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
 
-import { HomeOutlined } from '@mui/icons-material';
+import { HomeOutlined, MenuOutlined } from '@mui/icons-material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import SpaIcon from '@mui/icons-material/Spa';
 import MonitorHeartOutlinedIcon from '@mui/icons-material/MonitorHeartOutlined';
 import SportsHandballOutlinedIcon from '@mui/icons-material/SportsHandballOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import { signOut } from 'next-auth/react';
+import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 
 export default function HomePage() {
   const { error, user } = useUser({
@@ -107,25 +108,35 @@ export default function HomePage() {
       <Stack id="main-content">
 
         <Stack id="top-nav-bar">
-          <Stack>
-            <Typography
-              fontWeight="bold">
-              {user.name}
-            </Typography>
-            <Typography
-              variant="caption">
-              {user.email}
-            </Typography>
-          </Stack>
-          <IconButton
-            onClick={toggleSideBarVisibility}
-            aria-label="menu"
-            size="large">
+          <Stack
+            spacing={1.5}
+            direction="row"
+            alignItems="center">
             <Avatar
               className='avatar'
               alt={user.name || ""}
               src={user.picture || ""} />
-          </IconButton>
+            <Stack>
+              <Typography
+                fontWeight="bold">
+                {user.name}
+              </Typography>
+              <Typography
+                variant="caption">
+                {user.email}
+              </Typography>
+            </Stack>
+          </Stack>
+          <div hidden={!isSmallDevice}>
+            <IconButton
+              onClick={toggleSideBarVisibility}
+              aria-label="menu"
+              size="large">
+              {!sideBarVisible
+                ? <MenuOutlined fontSize="large" />
+                : <MenuOpenOutlinedIcon fontSize="large" />}
+            </IconButton>
+          </div>
         </Stack>
 
         <Box hidden={currentTab !== 0}>
