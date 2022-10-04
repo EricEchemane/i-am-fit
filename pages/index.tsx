@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, IconButton, Paper, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Avatar, Box, Button, IconButton, Stack, Typography, useMediaQuery } from '@mui/material';
 import LoadingSkeleton from 'components/shared/LoadingSkeleton';
 import useUser from 'hooks/useUser';
 import Head from 'next/head';
@@ -16,12 +16,12 @@ export default function HomePage() {
   const { error, user } = useUser({
     whenNotFoundRedirectTo: '/sign-in'
   });
-  const is800Width = useMediaQuery('(max-width:800px)');
+  const isSmallDevice = useMediaQuery('(max-width:800px)');
   const [currentTab, setCurrentTab] = useState(0);
-  const [sideBarVisible, setSideBarVisible] = useState(is800Width);
+  const [sideBarVisible, setSideBarVisible] = useState(isSmallDevice);
   const changeTab = (n: number) => () => {
     setCurrentTab(n);
-    closeSideBar();
+    if (isSmallDevice) return; closeSideBar();
   };
 
   const openSideBar = () => {
@@ -40,7 +40,7 @@ export default function HomePage() {
   };
 
   const toggleSideBarVisibility = () => {
-    if (!is800Width) return;
+    if (!isSmallDevice) return;
     sideBarVisible ? closeSideBar() : openSideBar();
   };
 
