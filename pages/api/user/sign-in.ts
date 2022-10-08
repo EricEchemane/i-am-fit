@@ -1,5 +1,4 @@
 
-import bcrypt from "bcryptjs";
 import connectToDatabase from "db/connect";
 import { NextApiRequest } from "next";
 import { JWT } from "next-auth/jwt";
