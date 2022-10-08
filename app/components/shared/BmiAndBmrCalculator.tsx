@@ -3,6 +3,7 @@ import useAlertDialog from "hooks/with_provider/useAlertDialog";
 import { useState } from "react";
 
 type Gender = "male" | "female";
+type BmiCategories = "Normal" | "Underweight" | "Overweight" | "Obese";
 
 function calculateBmi(height: number, weight: number): number {
     return weight / (height / 100) ** 2;
@@ -14,6 +15,12 @@ function calculateBmr(args: { weight: number, height: number, age: number; }, ge
     else {
         return 447.593 + (9.247 * args.weight) + (3.098 * args.height) - (4.330 * args.age);
     }
+}
+function inferBmiCategory(bmi: number): BmiCategories {
+    if (bmi < 18.5) return "Underweight";
+    if (bmi >= 25.0 && bmi <= 29.9) return "Overweight";
+    if (bmi > 29.9) return "Underweight";
+    return "Normal";
 }
 
 interface Props {
@@ -103,13 +110,13 @@ export default function BmiAndBmrCalculator({ age, gender }: Props) {
                     Results:
                 </Typography>
                 <Typography>
-                    Body Mass Index: <Chip
-                        label={bmi}
+                    Your Body Mass Index is <Chip
+                        label={`${bmi.toFixed(2)} - ${inferBmiCategory(bmi)}`}
                         variant='filled'
                         color={bmi >= 18.5 && bmi <= 24.9 ? "success" : "warning"} />
                 </Typography>
                 <Typography>
-                    Body Metabolic Rate: {bmr}
+                    Your Body Metabolic Rate: {bmr}
                 </Typography>
             </Stack>}
     </>;
