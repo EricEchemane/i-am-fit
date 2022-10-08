@@ -39,10 +39,14 @@ const userSchema = new Schema({
     bmiHistory: [{
         date: String,
         bmi: Number,
+        height: Number,
+        weight: Number
     }],
     bmrHistory: [{
         date: String,
         bmr: Number,
+        height: Number,
+        weight: Number
     }],
 });
 
