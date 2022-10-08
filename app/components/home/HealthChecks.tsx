@@ -1,9 +1,8 @@
 import { Stack, Typography } from '@mui/material';
 import { useUserContext } from 'app/user.context';
-import BMICalculator from 'components/shared/BMICalculator';
+import BmiAndBmrCalculator from 'components/shared/BmiAndBmrCalculator';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-// import BMRCalculator from 'components/shared/BMRCalculator';
 
 export default function HealthChecks() {
     const { user } = useUserContext();
@@ -20,15 +19,13 @@ export default function HealthChecks() {
         <Typography
             px={3} mb={3}
             variant="h6">
-            Your are {age} years old
+            Your are {age} years old 💚
         </Typography>
         <Stack
-            direction="row"
             px={3}
             spacing={2}>
 
-            <BMICalculator />
-            {/* <BMRCalculator /> */}
+            <BmiAndBmrCalculator age={age} gender={user.gender} />
         </Stack>
     </>;
 }
