@@ -155,7 +155,7 @@ export default function HomePage() {
           </div>
         </Stack>
 
-        <Box hidden={currentTab !== 0}>
+        <Box hidden={currentTab !== 0} className="scrollable">
           <HomeComponent />
         </Box>
         <Box hidden={currentTab !== 1}>

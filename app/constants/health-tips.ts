@@ -1,4 +1,4 @@
-interface HealthTip {
+export interface HealthTip {
     title: string;
     description: string;
     image: string;
