@@ -12,6 +12,10 @@ import MonitorHeartOutlinedIcon from '@mui/icons-material/MonitorHeartOutlined';
 import SportsHandballOutlinedIcon from '@mui/icons-material/SportsHandballOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
+import HomeComponent from 'components/home';
+import HealthChecks from 'components/home/HealthChecks';
+import Monitoring from 'components/home/Monitoring';
+import Exercises from 'components/home/Exercises';
 
 export default function HomePage() {
   const { error, user } = useUser({
@@ -140,16 +144,16 @@ export default function HomePage() {
         </Stack>
 
         <Box hidden={currentTab !== 0}>
-          home
+          <HomeComponent />
         </Box>
         <Box hidden={currentTab !== 1}>
-          Health checks
+          <HealthChecks />
         </Box>
         <Box hidden={currentTab !== 2}>
-          Monitoring
+          <Monitoring />
         </Box>
         <Box hidden={currentTab !== 3}>
-          Exercises
+          <Exercises />
         </Box>
 
       </Stack>
