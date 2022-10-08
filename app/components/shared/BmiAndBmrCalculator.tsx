@@ -55,7 +55,10 @@ export default function BmiAndBmrCalculator({ age, gender }: Props) {
 
         loadingIndicator.show();
         await Http.post("/api/user/push-checks", {
-            bmi: newBmi, bmr: newBmr
+            bmi: newBmi,
+            bmr: newBmr,
+            weight: +weight,
+            height: +height
         }, {
             onSuccess: () => notify("Bmi and Bmr recorded", "success"),
             onFail: message => notify(message, "error"),
