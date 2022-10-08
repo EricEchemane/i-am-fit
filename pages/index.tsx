@@ -155,16 +155,24 @@ export default function HomePage() {
           </div>
         </Stack>
 
-        <Box hidden={currentTab !== 0} className="scrollable">
+        <Box
+          hidden={currentTab !== 0}
+          className="scrollable">
           <HomeComponent />
         </Box>
-        <Box hidden={currentTab !== 1}>
+        <Box
+          hidden={currentTab !== 1}
+          className="scrollable">
           <HealthChecks />
         </Box>
-        <Box hidden={currentTab !== 2}>
+        <Box
+          hidden={currentTab !== 2}
+          className="scrollable">
           <Monitoring />
         </Box>
-        <Box hidden={currentTab !== 3}>
+        <Box
+          hidden={currentTab !== 3}
+          className="scrollable">
           <Exercises />
         </Box>
 
