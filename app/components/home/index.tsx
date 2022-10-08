@@ -1,7 +1,6 @@
-import { Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import HealthTipComponent from "components/shared/HealthTip";
 import healthTips from "constants/health-tips";
-import Head from "next/head";
 
 export default function HomeComponent() {
     return <>
