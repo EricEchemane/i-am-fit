@@ -17,12 +17,24 @@ export default function CreateAccount() {
     const notify = useNotification();
 
     // form values
-    const [birthDate, setBirthDate] = useState<Dayjs | null>(dayjs('03-29-2000'));
-    const [yearLevel, setYearLevel] = useState('7');
-    const [gender, setGender] = useState('male');
+    const [birthDate, setBirthDate] = useState<Dayjs | null>(null);
+    const [yearLevel, setYearLevel] = useState('');
+    const [gender, setGender] = useState('');
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        if (!birthDate) {
+            notify("Please provide your birth day", "error");
+            return;
+        }
+        if (yearLevel === '') {
+            notify("Please enter your year level", "error");
+            return;
+        }
+        if (gender === '') {
+            notify("Please specify your sex", "error");
+            return;
+        }
         loadingIndicator.show();
         await Http.post("/api/user/sign-in", { birthDate, yearLevel, gender }, {
             onFail: errorMessage => notify(errorMessage, "error"),
@@ -69,7 +81,7 @@ export default function CreateAccount() {
                                 label="Birth Day"
                                 value={birthDate}
                                 onChange={(newValue) => setBirthDate(newValue)}
-                                renderInput={(params) => <TextField fullWidth {...params} />}
+                                renderInput={(params) => <TextField placeholder="Enter your Birth Day" fullWidth {...params} />}
                             />
                         </LocalizationProvider>
                         <FormControl fullWidth>
@@ -93,10 +105,10 @@ export default function CreateAccount() {
                         </FormControl>
                     </Stack>
                     <FormControl>
-                        <FormLabel id="gender">Gender</FormLabel>
+                        <FormLabel id="gender">Sex</FormLabel>
                         <RadioGroup row
-                            aria-labelledby="gender"
-                            name="gender"
+                            aria-labelledby="sex"
+                            name="sex"
                             value={gender}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 setGender((event.target as HTMLInputElement).value);
