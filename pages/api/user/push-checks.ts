@@ -8,8 +8,8 @@ import normalize, { RequestError } from "utils/response_normalize";
 async function handler(req: NextApiRequest, token: JWT) {
     if (req.method !== "POST") throw new RequestError(405, "Method not allowed");
 
-    const { bmi, bmr } = req.body;
-    if (!bmi || !bmr) throw new RequestError(400, "Bad request");
+    const { bmi, bmr, height, weight } = req.body;
+    if (!bmi || !bmr || !height || !weight) throw new RequestError(400, "Bad request");
 
     const db = await connectToDatabase();
     if (!db) throw new RequestError(500, "Cannot connect to database");
@@ -19,8 +19,8 @@ async function handler(req: NextApiRequest, token: JWT) {
         email: token.email,
     }, {
         $push: {
-            bmiHistory: { date: new Date().toString(), bmi },
-            bmrHistory: { date: new Date().toString(), bmr },
+            bmiHistory: { date: new Date().toString(), bmi, height, weight },
+            bmrHistory: { date: new Date().toString(), bmr, height, weight },
         }
     });
 
