@@ -31,6 +31,9 @@
       ],
       "db/*": [
         "app/db/*"
+      ],
+      "constants/*": [
+        "app/constants/*"
       ]
     }
   },
