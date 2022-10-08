@@ -26,6 +26,7 @@ body {
     width: 270px;
     border-right: 1px solid hsla(0, 0%, 0%, .1);
     transition: 200ms ease;
+    z-index: 3;
 }
 
 .active-nav-button {
@@ -42,7 +43,7 @@ body {
     padding: .75rem 1.5rem;
     border-bottom: 1px solid hsla(0, 0%, 0%, .1);
     background-color: white;
-    z-index: 2;
+    z-index: 1;
 }
 
 #top-nav-bar .avatar {

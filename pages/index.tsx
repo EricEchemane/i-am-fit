@@ -36,8 +36,8 @@ export default function HomePage() {
   }, [router.query]);
 
   const changeTab = (n: number) => () => {
-    // setCurrentTab(n);
     router.replace(`?tab=${n}`);
+    setCurrentTab(n);
     if (isSmallDevice) closeSideBar();
   };
 
