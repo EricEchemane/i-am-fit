@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react';
 export default function HealthChecks() {
     const { user } = useUserContext();
     const [age, setAge] = useState(0);
-    console.log(user);
-
 
     useEffect(() => {
         if (!user) return;

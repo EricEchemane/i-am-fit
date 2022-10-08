@@ -63,6 +63,7 @@ body {
     overflow-y: auto;
     height: 100vh;
     padding-top: 7rem;
+    width: calc(100vw - 270px);
 }
 
 .box-lists {
@@ -94,5 +95,9 @@ body {
         background-color: white;
         z-index: 2;
         translate: -100% 0;
+    }
+
+    .scrollable {
+        width: 100vw;
     }
 }
