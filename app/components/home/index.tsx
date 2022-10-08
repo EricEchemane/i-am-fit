@@ -15,10 +15,8 @@ export default function HomeComponent() {
             Your weekly health tips
         </Typography>
 
-        <Stack
-            m={2}
-            spacing={4}>
+        <div className="box-lists">
             {healthTips.map((tip, idx) => <HealthTipComponent key={idx} tip={tip} />)}
-        </Stack>
+        </div>
     </>;
 }

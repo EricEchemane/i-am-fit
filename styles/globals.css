@@ -57,6 +57,25 @@ body {
     translate: -.6rem 0;
 }
 
+.scrollable {
+    position: fixed;
+    overflow-y: auto;
+    height: 100vh;
+    padding-top: 7rem;
+}
+
+.box-lists {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    padding: 1rem;
+    grid-auto-flow: row dense;
+}
+
+.box-lists>div {
+    height: min-content;
+}
+
 @media screen and (max-width: 800px) {
     #dashboard {
         grid-template-columns: 1fr;
@@ -75,11 +94,4 @@ body {
         z-index: 2;
         translate: -100% 0;
     }
-}
-
-.scrollable {
-    position: fixed;
-    overflow-y: auto;
-    height: 100vh;
-    padding-top: 7rem;
 }
