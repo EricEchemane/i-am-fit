@@ -1,4 +1,4 @@
-import React from 'react';
+import healthTips from "constants/health-tips";
 
 export default function HomeComponent() {
     return (

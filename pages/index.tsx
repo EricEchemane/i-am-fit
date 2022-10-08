@@ -2,7 +2,7 @@ import { Avatar, Box, Button, IconButton, Stack, Typography, useMediaQuery } fro
 import LoadingSkeleton from 'components/shared/LoadingSkeleton';
 import useUser from 'hooks/useUser';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 
 import { HomeOutlined, MenuOutlined } from '@mui/icons-material';
@@ -16,16 +16,28 @@ import HomeComponent from 'components/home';
 import HealthChecks from 'components/home/HealthChecks';
 import Monitoring from 'components/home/Monitoring';
 import Exercises from 'components/home/Exercises';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
   const { error, user } = useUser({
     whenNotFoundRedirectTo: '/sign-in'
   });
   const isSmallDevice = useMediaQuery('(max-width:800px)');
-  const [currentTab, setCurrentTab] = useState(0);
   const [sideBarVisible, setSideBarVisible] = useState(isSmallDevice);
+  const router = useRouter();
+  const [currentTab, setCurrentTab] = useState<number>(0);
+
+  useEffect(() => {
+    if (router.query && router.query.tab) {
+      const tab = parseInt(router.query.tab as string);
+      if (tab > 3) return;
+      setCurrentTab(tab);
+    }
+  }, [router.query]);
+
   const changeTab = (n: number) => () => {
-    setCurrentTab(n);
+    // setCurrentTab(n);
+    router.replace(`?tab=${n}`);
     if (isSmallDevice) closeSideBar();
   };
 
