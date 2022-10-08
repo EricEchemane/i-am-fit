@@ -8,11 +8,11 @@ export default function LoadingSkeleton() {
                 direction="row"
                 spacing={3}
                 py={5}>
-                <Skeleton variant="rounded" width="100%">
-                    <Typography />
-                </Skeleton>
                 <Skeleton variant="circular">
                     <Avatar />
+                </Skeleton>
+                <Skeleton variant="rounded" width="100%">
+                    <Typography />
                 </Skeleton>
             </Stack>
             <Skeleton
