@@ -68,7 +68,7 @@ body {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    padding: 1rem;
+    padding: 2rem;
     grid-auto-flow: row dense;
 }
 

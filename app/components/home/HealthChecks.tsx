@@ -1,7 +1,8 @@
+import Head from 'next/head';
 import React from 'react';
 
 export default function HealthChecks() {
-    return (
-        <div>HealthChecks</div>
-    );
+    return <>
+
+    </>;
 }

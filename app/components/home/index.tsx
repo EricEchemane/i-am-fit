@@ -5,12 +5,8 @@ import Head from "next/head";
 
 export default function HomeComponent() {
     return <>
-        <Head>
-            <title> Weekly Health Tips </title>
-        </Head>
-
         <Typography
-            ml={2} mb={4}
+            ml={3} mb={1}
             variant="h4">
             Your weekly health tips
         </Typography>
