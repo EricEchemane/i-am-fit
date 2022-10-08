@@ -1,6 +1,9 @@
 import { Button, Chip, FormControl, FormHelperText, Grid, InputAdornment, OutlinedInput, Stack, TextField, Typography } from "@mui/material";
 import useAlertDialog from "hooks/with_provider/useAlertDialog";
+import useLoadingIndicator from "hooks/with_provider/useLoadingIndicator";
+import useNotification from "hooks/with_provider/useNotification";
 import { useState } from "react";
+import Http from "utils/http";
 
 type Gender = "male" | "female";
 type BmiCategories = "Normal" | "Underweight" | "Overweight" | "Obese";
@@ -35,19 +38,32 @@ export default function BmiAndBmrCalculator({ age, gender }: Props) {
     const [bmi, setBmi] = useState<number | null>(null);
     const [bmr, setBmr] = useState<number | null>(null);
     const alertDialog = useAlertDialog();
+    const loadingIndicator = useLoadingIndicator();
+    const notify = useNotification();
 
-    const calculateAndSave = () => {
+    const calculateAndSave = async () => {
         if (weight.trim() === '' || height.trim() === '') {
             alertDialog.show("Ooops! 😄", "Please enter your height and weight first.");
             return;
         }
         const newBmi = calculateBmi(+height, +weight);
-        setBmi(newBmi);
-        setBmr(calculateBmr({
+        const newBmr = calculateBmr({
             age,
             weight: +weight,
             height: +height
-        }, gender as Gender));
+        }, gender as Gender);
+
+        loadingIndicator.show();
+        await Http.post("/api/user/push-checks", {
+            bmi: newBmi, bmr: newBmr
+        }, {
+            onSuccess: () => notify("Bmi and Bmr recorded", "success"),
+            onFail: message => notify(message, "error"),
+        });
+        loadingIndicator.hide();
+
+        setBmi(newBmi);
+        setBmr(newBmr);
         setInferredBmiCategory(inferBmiCategory(newBmi));
     };
 
