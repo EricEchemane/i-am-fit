@@ -23,7 +23,7 @@ body {
 }
 
 #side-bar {
-    width: 300px;
+    width: 270px;
     border-right: 1px solid hsla(0, 0%, 0%, .1);
     transition: 200ms ease;
 }
