@@ -65,7 +65,7 @@ export default function HomePage() {
 
   return <>
     <Head>
-      <title> Health Companion </title>
+      <title> Fitness Companion </title>
     </Head>
     <div id="dashboard">
       <Stack id="side-bar">
