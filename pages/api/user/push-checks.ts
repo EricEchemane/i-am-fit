@@ -1,6 +1,5 @@
 
 import connectToDatabase from "db/connect";
-import { IUser } from "db/user.schema";
 import { NextApiRequest } from "next";
 import { JWT } from "next-auth/jwt";
 import normalize, { RequestError } from "utils/response_normalize";

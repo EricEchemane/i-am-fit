@@ -37,6 +37,7 @@ export default function HomePage() {
 
   const changeTab = (n: number) => () => {
     router.replace(`?tab=${n}`);
+    setCurrentTab(n);
     if (isSmallDevice) closeSideBar();
   };
 
@@ -154,26 +155,23 @@ export default function HomePage() {
           </div>
         </Stack>
 
-        <Box
-          hidden={currentTab !== 0}
+        {currentTab === 0 && <Box
           className="scrollable">
           <HomeComponent />
-        </Box>
-        <Box
-          hidden={currentTab !== 1}
+        </Box>}
+        {currentTab === 1 && <Box
           className="scrollable">
           <HealthChecks />
-        </Box>
-        <Box
-          hidden={currentTab !== 2}
+        </Box>}
+        {currentTab === 2 && <Box
           className="scrollable">
           <Monitoring />
-        </Box>
-        <Box
-          hidden={currentTab !== 3}
-          className="scrollable">
-          <Exercises />
-        </Box>
+        </Box>}
+        {currentTab === 3 &&
+          <Box
+            className="scrollable">
+            <Exercises />
+          </Box>}
 
       </Stack>
     </div>

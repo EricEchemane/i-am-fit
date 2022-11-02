@@ -1,9 +1,10 @@
 import { Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { IUser } from 'db/user.schema';
-import useUser from 'hooks/useUser';
+import { useUserContext } from 'app/user.context';
+import useFetch from 'hooks/useFetch';
 
 const formatDate = (date: string) => {
     return dayjs(date).format("MM/DD/YYYY-MM:HHA");
@@ -14,7 +15,12 @@ const createHistoryData = (user: IUser, variant: 'bmi' | 'bmr') => {
 };
 
 export default function Monitoring() {
-    const { user } = useUser();
+    const { data } = useFetch("/api/user");
+    const { user, dispatch } = useUserContext();
+
+    useEffect(() => {
+        if (data) dispatch({ type: "set user", payload: data.data });
+    }, [data, dispatch]);
 
     return <>
         <Stack spacing={2} mb={5} pr={2}>
