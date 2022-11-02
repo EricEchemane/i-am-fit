@@ -40,9 +40,6 @@ export default function LandingComponent() {
                         ✅Daily health and nutrition tips and facts
                     </Typography>
                     <Typography>
-                        ✅Daily health and nutrition tips and facts
-                    </Typography>
-                    <Typography>
                         ✅Health Status Monitor, Exercise Catalogs and more!
                     </Typography>
                 </Stack>
