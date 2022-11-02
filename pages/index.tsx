@@ -78,7 +78,7 @@ export default function HomePage() {
             color='primary'
             fontWeight="bold"
             variant="h6">
-            Health Companion
+            Fitness Companion
           </Typography>
         </Stack>
 
