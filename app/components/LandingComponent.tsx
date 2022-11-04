@@ -6,7 +6,7 @@ import Head from "next/head";
 export default function LandingComponent() {
     return <>
         <Head>
-            <title> Health Companion </title>
+            <title> Fitness Companion </title>
         </Head>
         <Container maxWidth="md">
             <Stack
@@ -16,7 +16,7 @@ export default function LandingComponent() {
                 <Typography
                     component="h1"
                     variant="h2">
-                    Health Companion
+                    Fitness Companion
                 </Typography>
                 <Typography
                     component="h2"
