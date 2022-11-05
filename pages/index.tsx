@@ -17,6 +17,7 @@ import HealthChecks from 'components/home/HealthChecks';
 import Monitoring from 'components/home/Monitoring';
 import Exercises from 'components/home/Exercises';
 import { useRouter } from 'next/router';
+import CalorieMonitor from 'components/home/CalorieMonitor';
 
 export default function HomePage() {
   const { error, user } = useUser({
@@ -30,7 +31,7 @@ export default function HomePage() {
   useEffect(() => {
     if (router.query && router.query.tab) {
       const tab = parseInt(router.query.tab as string);
-      if (tab > 3) return;
+      if (tab > 4) return;
       setCurrentTab(tab);
     }
   }, [router.query]);
@@ -113,6 +114,12 @@ export default function HomePage() {
           startIcon={<SportsHandballOutlinedIcon />}>
           Exercises
         </NavButton>
+        <NavButton
+          onClick={changeTab(4)}
+          active={currentTab === 4}
+          startIcon={<SportsHandballOutlinedIcon />}>
+          Calorie Monitor
+        </NavButton>
         <div style={{ flex: 1 }}></div>
         <NavButton
           onClick={signOut}
@@ -171,6 +178,11 @@ export default function HomePage() {
           <Box
             className="scrollable">
             <Exercises />
+          </Box>}
+        {currentTab === 4 &&
+          <Box
+            className="scrollable">
+            <CalorieMonitor />
           </Box>}
 
       </Stack>
