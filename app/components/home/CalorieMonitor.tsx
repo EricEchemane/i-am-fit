@@ -43,7 +43,7 @@ export default function CalorieMonitor() {
                         <MenuItem value={'all'}> All </MenuItem>
                         <MenuItem value={'meat'}> Meat </MenuItem>
                         <MenuItem value={'grain'}> Grain </MenuItem>
-                        <MenuItem value={'sweet'}> Sweet </MenuItem>
+                        <MenuItem value={'sweets'}> Sweets </MenuItem>
                         <MenuItem value={'vegetable'}> Vegetable </MenuItem>
                     </Select>
                 </FormControl>
