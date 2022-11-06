@@ -147,7 +147,7 @@ const foods: Food[] = [
     {
         name: "Rice, brown (1 cup)",
         calorie: 232,
-        image: "https://steamykitchen.com/wp-content/uploads/2013/12/How-to-Microwave-Brown-Rice-featured-0312-480x270.jpgg",
+        image: "https://www.alphafoodie.com/wp-content/uploads/2020/12/Brown-Rice-1-of-1.jpeg",
         category: 'grain',
     },
     {
@@ -280,18 +280,6 @@ const foods: Food[] = [
         name: "Tocino Per serving",
         calorie: 230,
         image: "https://yummyfood.ph/wp-content/uploads/2021/09/pork-tocino.jpg",
-        category: 'meat',
-    },
-    {
-        name: "",
-        calorie: 0,
-        image: "",
-        category: 'meat',
-    },
-    {
-        name: "",
-        calorie: 0,
-        image: "",
         category: 'meat',
     },
 ];
