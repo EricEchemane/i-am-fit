@@ -10,11 +10,9 @@ export default function CalorieMonitor() {
     const [foodList, setFoodList] = useState(foods);
 
     useEffect(() => {
-        if (filter === 'all') {
-            setFoodList(foods);
-        } else {
-            setFoodList(foods.filter((food) => food.category === filter));
-        }
+        filter === 'all'
+            ? setFoodList(foods)
+            : setFoodList(foods.filter((food) => food.category === filter));
     }, [filter]);
 
     return (
