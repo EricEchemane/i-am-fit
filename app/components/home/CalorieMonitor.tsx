@@ -36,6 +36,7 @@ export default function CalorieMonitor() {
                 <TextField
                     sx={{ flex: 1 }}
                     type='search'
+                    placeholder='start typing'
                     label='Search for food'
                     onChange={(e) => setSearchQuery(e.target.value)}
                     value={searchQuery} />
