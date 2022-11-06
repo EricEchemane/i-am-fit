@@ -15,6 +15,14 @@ export default function CalorieMonitor() {
             : setFoodList(foods.filter((food) => food.category === filter));
     }, [filter]);
 
+    useEffect(() => {
+        setFoodList(
+            foods.filter((food) =>
+                food.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+        );
+    }, [searchQuery]);
+
     return (
         <Stack px={4} spacing={2}>
 
